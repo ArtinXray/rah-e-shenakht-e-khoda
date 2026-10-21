@@ -4,226 +4,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080706">
+<meta name="theme-color" content="#090806">
 <title>مسیر شناخت خدا</title>
 <style>
-:root{
-  --gold:#d9b66f;
-  --light:#f8e5ae;
-  --border:rgba(242,207,132,.36);
-}
+:root{--gold:#d9b66f;--light:#f8e5ae}
 *{box-sizing:border-box}
 body{
-  margin:0;min-height:100vh;
-  background:radial-gradient(ellipse at 50% 0%,#302416,#100d09 42%,#050505 85%);
-  color:#f3e8ce;font-family:Tahoma,Arial,sans-serif;text-align:center;
+ margin:0;background:radial-gradient(ellipse at top,#302416,#100d09 48%,#050505);
+ color:#f6e9ca;font-family:Tahoma,Arial,sans-serif;text-align:center
 }
 header{padding:22px 10px 8px}
 .logo{
-  width:88px;height:88px;margin:0 auto 14px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg,#17130c,#050505);
-  border:1px solid var(--gold);border-radius:24px;
-  color:#f6d78e;font-size:35px;font-weight:bold;
-  font-family:"Noto Naskh Arabic","Traditional Arabic",Tahoma,serif;
-  text-shadow:0 0 12px #d9b66f40;
-  box-shadow:0 0 24px #d9b66f18,inset 0 0 16px #d9b66f0d;
+ width:84px;height:84px;margin:auto;display:flex;align-items:center;
+ justify-content:center;border:1px solid var(--gold);border-radius:23px;
+ background:linear-gradient(145deg,#21190e,#080705);
+ color:var(--light);font-size:35px;box-shadow:0 0 24px #d9b66f20
 }
-h1{font-size:23px;margin:8px 0;color:var(--light)}
+h1{font-size:23px;color:var(--light);margin:12px 0}
 h2{font-size:18px;color:var(--gold)}
 p{line-height:1.9}
-.small{font-size:12px;color:#c2b69e;line-height:2}
+.small{font-size:12px;color:#c7b99d;line-height:2}
 main{width:min(95%,520px);margin:auto;padding:8px 0 25px}
 .panel{
-  background:linear-gradient(135deg,rgba(255,241,208,.09),rgba(255,255,255,.025) 45%,rgba(201,154,66,.055));
-  border:1px solid var(--border);border-radius:22px;
-  padding:15px;margin:12px 0;
-  box-shadow:0 12px 32px #0007,inset 0 1px 0 #fff1;
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+ margin:12px 0;padding:15px;border-radius:22px;
+ background:linear-gradient(135deg,#ffffff0d,#d9b66f08,#ffffff03);
+ border:1px solid #d9b66f55;
+ box-shadow:0 12px 32px #0007,inset 0 1px 0 #ffffff12;
+ backdrop-filter:blur(14px)
 }
 button{
-  color:#f8e8c2;background:linear-gradient(135deg,#594322,#2a2114 60%,#15110b);
-  border:1px solid #c8a45f88;border-radius:13px;
-  padding:11px 14px;margin:4px;font-family:inherit;font-size:14px;
-  cursor:pointer;box-shadow:inset 0 1px 0 #fff2,0 4px 12px #0004;
+ margin:4px;padding:11px 14px;border:1px solid #c9a45d99;
+ border-radius:13px;color:#f8e8c2;
+ background:linear-gradient(145deg,#574323,#21190e);
+ font-family:inherit;font-size:14px;cursor:pointer
 }
 button:active{transform:scale(.97)}
-button:disabled{
-  background:#171512;border-color:#373027;color:#716858;opacity:.6
-}
-button.secondary{background:#ffffff08}
+button:disabled{opacity:.4;cursor:default}
+.secondary{background:#ffffff08}
 .hidden{display:none!important}
-#chapters{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.chapter{min-height:92px;line-height:1.9}
+#chapters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chapter{min-height:88px;line-height:1.9}
 #levels{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.level-btn{margin:0;padding:11px 3px}
+.level-btn{margin:0;padding:11px 2px}
 .stats{display:flex;justify-content:space-around;gap:6px;flex-wrap:wrap}
-.stat{
-  font-size:13px;padding:8px 10px;border:1px solid #d9b66f35;
-  border-radius:12px;background:#ffffff06;
-}
+.stat{font-size:13px;padding:8px;border:1px solid #d9b66f35;border-radius:12px}
 #board{
-  display:grid;gap:5px;margin:16px auto;width:min(100%,410px);
-  aspect-ratio:1;padding:5px;border-radius:18px;
-  background:linear-gradient(145deg,#d9b66f10,#00000066);
-  border:1px solid #d9b66f40;
-  box-shadow:0 10px 28px #0008,inset 0 1px 0 #fff1;
+ direction:ltr;
+ display:grid;gap:5px;margin:16px auto;width:min(100%,410px);
+ aspect-ratio:1;padding:5px;border-radius:17px;
+ border:1px solid #d9b66f45;background:#0c0a07;
+ box-shadow:0 10px 28px #0008
 }
 .cell{
-  position:relative;min-width:0;min-height:0;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  overflow-wrap:anywhere;padding:2px;border-radius:9px;
-  font-size:clamp(9px,2.7vw,14px);color:#e8d9b8;
-  background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.025) 45%,rgba(218,175,92,.07));
-  border:1px solid rgba(236,204,143,.25);
-  box-shadow:inset 0 1px 0 #ffffff1f,inset 0 -5px 12px #0003,0 3px 7px #0003;
-  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-}
-.cell.good{
-  color:#ffe6a0;border-color:#e5c273a0;
-  background:linear-gradient(145deg,#e8c66c35,#8c652025,#ffffff08);
-  box-shadow:inset 0 1px 0 #fff3,inset 0 -5px 12px #0003,0 0 10px #d9b66f12;
-}
-.cell.bad{
-  color:#f0d59a;border-color:#c7a45f85;
-  background:linear-gradient(145deg,#c5a45a30,#8c65201c,#ffffff07);
-  box-shadow:inset 0 1px 0 #fff2,inset 0 -5px 12px #0003,0 3px 7px #0003;
-}
-.cell.safe{
-  color:#e8d9b8;border-color:#d9b66f35;
-  background:linear-gradient(145deg,#ffffff10,#d9b66f08);
-}
-.cell.good .num,.cell.got .num{
-  display:block;font-size:10px;color:#fff0bd;margin-bottom:3px;
-}
-.cell.goal{
-  color:#ffe3a0;font-weight:bold;border:2px solid #e6c77f;
-  background:radial-gradient(circle,#6b5025,#21190d 75%);
-  box-shadow:inset 0 1px 0 #fff3,0 0 15px #d9b66f24;
-  font-family:"Noto Naskh Arabic","Traditional Arabic",Tahoma,serif;
-  font-size:clamp(16px,4.5vw,24px);
-  text-shadow:0 0 10px #e5c16b50;
+ direction:rtl;min-width:0;min-height:0;overflow:hidden;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;overflow-wrap:anywhere;padding:2px;
+ border-radius:9px;font-size:clamp(9px,2.7vw,14px);
+ color:#f0dfb9;
+ /* همهٔ خانه‌ها یک رنگ و یک ظاهر دارند */
+ background:linear-gradient(145deg,#322819,#21190f 55%,#18130c);
+ border:1px solid #80683c;
+ box-shadow:inset 0 1px 0 #ffffff16,inset 0 -4px 10px #0004
 }
 .cell.player{
-  font-size:clamp(30px,9vw,48px);
-  border:2px solid #f7dc99;
-  background:linear-gradient(145deg,#8c6b34cc,#302416ee);
-  box-shadow:0 0 18px #d9b66f50,inset 0 1px 0 #fff5;
-  z-index:1;line-height:1;
+ direction:ltr;font-size:clamp(29px,8vw,45px);
+ border:2px solid #f4d88f;
+ background:linear-gradient(145deg,#65502d,#302416);
+ box-shadow:0 0 14px #d9b66f40
 }
-.cell.got{
-  color:#c5aa70;background:linear-gradient(145deg,#d9b66f18,#0003);
+.cell.goal{
+ color:#ffe3a0;border:2px solid #d9b66f;
+ font-family:"Noto Naskh Arabic","Traditional Arabic",Tahoma,serif;
+ font-size:clamp(16px,4.4vw,23px);font-weight:bold
 }
+.cell.checked{
+ color:#f9e5ae;
+}
+.cell.checked .tick{
+ display:block;color:#b8f0a1;font-size:19px;font-weight:bold;
+ line-height:1.1;margin-bottom:2px
+}
+.cell .tick{display:none}
 .controls{
-  display:grid;
-  grid-template-columns:repeat(3,60px);
-  grid-template-rows:repeat(3,48px);
-  justify-content:center;
-  gap:6px;
-  margin:12px auto;
+ direction:ltr;
+ display:grid;grid-template-columns:repeat(3,60px);
+ grid-template-rows:repeat(3,48px);
+ justify-content:center;gap:6px;margin:12px auto
 }
 .controls button{
-  width:60px;height:48px;font-size:22px;margin:0;padding:0;
-  background:linear-gradient(145deg,#5b4625,#21190e);
+ direction:ltr;width:60px;height:48px;margin:0;padding:0;
+ font-size:23px
 }
-#message{min-height:30px;color:var(--light);font-size:14px;line-height:1.9}
+#message{min-height:32px;color:var(--light);font-size:14px;line-height:1.9}
 footer{
-  border-top:1px solid #d9b66f35;padding:15px 8px 24px;
-  color:#bfb39a;font-size:12px;line-height:2.2;
-}
-@supports not ((backdrop-filter:blur(10px))){
-  .cell,.panel{background:#17130e}
+ border-top:1px solid #d9b66f35;padding:15px 8px 24px;
+ color:#bfb39a;font-size:12px;line-height:2.2
 }
 </style>
 </head>
 <body>
-
 <header>
-  <div class="logo">اللّٰه</div>
-  <h1>مسیر شناخت خدا</h1>
-  <p class="small">ماجراجویی در مسیر خوبی‌ها ✨</p>
+ <div class="logo">اللّٰه</div>
+ <h1>مسیر شناخت خدا</h1>
+ <p class="small">قدم‌به‌قدم در مسیر خوبی‌ها ✨</p>
 </header>
 
 <main>
-  <section id="home" class="panel">
-    <h2>به بازی خوش آمدی!</h2>
-    <p>گزینه‌های خوب را به‌ترتیب جمع کن و سپس به مقصد «اللّٰه» برس.</p>
-    <p class="small">با ۸ جهت حرکت کن. مسیر امن در هر مرحله تغییر می‌کند.</p>
-    <button onclick="showChapters()">شروع بازی</button>
-    <button class="secondary" onclick="resetProgress()">پاک کردن پیشرفت</button>
-  </section>
+ <section id="home" class="panel">
+  <h2>به بازی خوش آمدی!</h2>
+  <p>گزینه‌های خوب را به‌ترتیب پیدا کن و بعد به مقصد «اللّٰه» برس.</p>
+  <p class="small">با هشت جهت حرکت کن. خانه‌ها هم‌رنگ هستند و گزینه‌های درست با ✓ مشخص می‌شوند.</p>
+  <button onclick="showChapters()">شروع بازی</button>
+  <button class="secondary" onclick="resetProgress()">پاک کردن پیشرفت</button>
+ </section>
 
-  <section id="chapterScreen" class="panel hidden">
-    <h2>نقشهٔ فصل‌ها</h2>
-    <p class="small">با کامل کردن مراحل، فصل‌های بعدی باز می‌شوند.</p>
-    <div id="chapters"></div>
-    <button class="secondary" onclick="goHome()">بازگشت</button>
-  </section>
+ <section id="chapterScreen" class="panel hidden">
+  <h2>فصل‌های بازی</h2>
+  <div id="chapters"></div>
+  <button class="secondary" onclick="goHome()">بازگشت</button>
+ </section>
 
-  <section id="levelScreen" class="panel hidden">
-    <h2 id="levelHeading">انتخاب مرحله</h2>
-    <div id="levels"></div>
-    <button class="secondary" onclick="showChapters()">بازگشت به فصل‌ها</button>
-  </section>
+ <section id="levelScreen" class="panel hidden">
+  <h2 id="levelHeading">انتخاب مرحله</h2>
+  <div id="levels"></div>
+  <button class="secondary" onclick="showChapters()">بازگشت به فصل‌ها</button>
+ </section>
 
-  <section id="gameScreen" class="panel hidden">
-    <h2 id="gameHeading">مرحله</h2>
-    <div class="stats">
-      <div class="stat" id="heartStat">❤️❤️❤️</div>
-      <div class="stat" id="itemStat">گزینه‌ها: 0</div>
-      <div class="stat" id="sizeStat">اندازه: 4×4</div>
-    </div>
-    <p class="small" id="orderHint">ترتیب گزینه‌های خوب را رعایت کن.</p>
-    <div id="board" aria-label="صفحه بازی"></div>
+ <section id="gameScreen" class="panel hidden">
+  <h2 id="gameHeading">مرحله</h2>
+  <div class="stats">
+   <div class="stat" id="heartStat">❤️❤️❤️</div>
+   <div class="stat" id="itemStat">گزینه‌ها: 0</div>
+   <div class="stat" id="sizeStat">4×4</div>
+  </div>
+  <p class="small" id="orderHint">گزینهٔ شمارهٔ ۱ را پیدا کن.</p>
+  <div id="board"></div>
 
-    <div class="controls" aria-label="دکمه‌های حرکت در هشت جهت">
-      <button onclick="move(-1,-1)" aria-label="بالا چپ">↖</button>
-      <button onclick="move(0,-1)" aria-label="بالا">▲</button>
-      <button onclick="move(1,-1)" aria-label="بالا راست">↗</button>
-      <button onclick="move(-1,0)" aria-label="چپ">◀</button>
-      <button disabled aria-label="مرکز">✦</button>
-      <button onclick="move(1,0)" aria-label="راست">▶</button>
-      <button onclick="move(-1,1)" aria-label="پایین چپ">↙</button>
-      <button onclick="move(0,1)" aria-label="پایین">▼</button>
-      <button onclick="move(1,1)" aria-label="پایین راست">↘</button>
-    </div>
+  <div class="controls" aria-label="حرکت در هشت جهت">
+   <button onclick="move(-1,-1)" aria-label="بالا چپ">↖</button>
+   <button onclick="move(0,-1)" aria-label="بالا">↑</button>
+   <button onclick="move(1,-1)" aria-label="بالا راست">↗</button>
+   <button onclick="move(-1,0)" aria-label="چپ">←</button>
+   <button disabled aria-label="مرکز">✦</button>
+   <button onclick="move(1,0)" aria-label="راست">→</button>
+   <button onclick="move(-1,1)" aria-label="پایین چپ">↙</button>
+   <button onclick="move(0,1)" aria-label="پایین">↓</button>
+   <button onclick="move(1,1)" aria-label="پایین راست">↘</button>
+  </div>
 
-    <p class="small">با دکمه‌ها یا کلیدهای جهت‌دار حرکت کن. برای مورب رفتن از دکمه‌های مورب استفاده کن.</p>
-    <div id="message" role="status" aria-live="polite"></div>
-    <button class="secondary" onclick="showLevels(currentChapter)">فهرست مراحل</button>
-    <button class="secondary" onclick="showChapters()">نقشهٔ فصل‌ها</button>
-  </section>
+  <p class="small">جهت‌ها بر اساس ظاهر صفحه تنظیم شده‌اند. از کلیدهای جهت‌دار صفحه‌کلید هم می‌توانی استفاده کنی.</p>
+  <div id="message" role="status" aria-live="polite"></div>
+  <button class="secondary" onclick="showLevels(currentChapter)">فهرست مراحل</button>
+  <button class="secondary" onclick="showChapters()">فصل‌ها</button>
+ </section>
 </main>
 
 <footer>
-  <div>نام طراح: آرتین کرم زاده</div>
-  <div>نام دبیر: استاد سید علی حسینی</div>
-  <div>مدرسهٔ علامهٔ حلّی شهر قدس</div>
-  <div>مسیر شناخت خدا 🖤✨</div>
+ <div>نام طراح: آرتین کرم زاده</div>
+ <div>نام دبیر: استاد سید علی حسینی</div>
+ <div>مدرسهٔ علامهٔ حلّی شهر قدس</div>
 </footer>
 
 <script>
 const chapterNames=[
-  "قدم‌های نخست","راه مهربانی","انتخاب درست",
-  "مسیر روشنایی","نزدیک‌تر به خوبی"
+ "قدم‌های نخست","راه مهربانی","انتخاب درست",
+ "مسیر روشنایی","نزدیک‌تر به خوبی"
 ];
 const boardSizes=[4,5,6,7,8];
 const goodWords=[
-  "نماز","مهربانی","راست‌گویی","کمک",
-  "احترام","صداقت","بخشش","امانت‌داری"
+ "نماز","مهربانی","راست‌گویی","کمک",
+ "احترام","صداقت","بخشش","امانت‌داری"
 ];
 const badWords=[
-  "دروغ","بی‌احترامی","آزار","ظلم",
-  "غرور","حسادت","خیانت","تکبّر"
+ "دروغ","بی‌احترامی","آزار","ظلم",
+ "غرور","حسادت","خیانت","تکبّر"
 ];
 const safeWords=[
-  "صبر","شکر","امید","توکّل",
-  "گذشت","انصاف","آرامش","یاد خدا"
+ "صبر","شکر","امید","توکّل",
+ "گذشت","انصاف","آرامش","یاد خدا"
 ];
 
 let saved={};
 try{
-  saved=JSON.parse(localStorage.getItem("masirKhodaGoldSave")||"{}");
+ saved=JSON.parse(localStorage.getItem("masirKhodaGoldSave")||"{}");
 }catch(e){saved={};}
 
 let maxUnlocked=Math.max(1,Math.min(75,Number(saved.maxUnlocked)||1));
@@ -233,345 +196,258 @@ let player={x:0,y:0},hearts=3,goods=[],bads=[],safeCells=[];
 let goal={x:0,y:0},collected=new Set(),nextGood=0,gameOver=false;
 
 function saveProgress(){
-  try{
-    localStorage.setItem(
-      "masirKhodaGoldSave",
-      JSON.stringify({maxUnlocked,completed})
-    );
-  }catch(e){}
+ try{
+  localStorage.setItem("masirKhodaGoldSave",
+   JSON.stringify({maxUnlocked,completed}));
+ }catch(e){}
 }
 function showOnly(id){
-  ["home","chapterScreen","levelScreen","gameScreen"].forEach(s=>{
-    document.getElementById(s).classList.toggle("hidden",s!==id);
-  });
+ ["home","chapterScreen","levelScreen","gameScreen"].forEach(s=>
+  document.getElementById(s).classList.toggle("hidden",s!==id)
+ );
 }
 function goHome(){showOnly("home")}
-function posKey(x,y){return x+","+y}
 
 function showChapters(){
-  showOnly("chapterScreen");
-  const box=document.getElementById("chapters");
-  box.innerHTML="";
-  for(let c=1;c<=5;c++){
-    const first=(c-1)*15+1,last=c*15;
-    const unlocked=maxUnlocked>=first;
-    const done=completed.filter(n=>n>=first&&n<=last).length;
-    const b=document.createElement("button");
-    b.className="chapter";
-    b.disabled=!unlocked;
-    b.innerHTML=(unlocked?"✦":"🔒")+" فصل "+c+"<br>"+
-      chapterNames[c-1]+"<br><small>"+done+"/15 مرحله</small>";
-    b.onclick=()=>showLevels(c);
-    box.appendChild(b);
-  }
+ showOnly("chapterScreen");
+ const box=document.getElementById("chapters");
+ box.innerHTML="";
+ for(let c=1;c<=5;c++){
+  const first=(c-1)*15+1,last=c*15;
+  const unlocked=maxUnlocked>=first;
+  const done=completed.filter(n=>n>=first&&n<=last).length;
+  const b=document.createElement("button");
+  b.className="chapter";b.disabled=!unlocked;
+  b.innerHTML=(unlocked?"✦":"🔒")+" فصل "+c+"<br>"+
+   chapterNames[c-1]+"<br><small>"+done+"/15 مرحله</small>";
+  b.onclick=()=>showLevels(c);
+  box.appendChild(b);
+ }
 }
 function showLevels(c){
-  currentChapter=c;
-  showOnly("levelScreen");
-  document.getElementById("levelHeading").textContent=
-    "فصل "+c+" ـ "+chapterNames[c-1];
-  const box=document.getElementById("levels");
-  box.innerHTML="";
-  for(let l=1;l<=15;l++){
-    const n=(c-1)*15+l;
-    const b=document.createElement("button");
-    b.className="level-btn";
-    b.textContent=completed.includes(n)?"✓ "+l:l;
-    b.disabled=n>maxUnlocked;
-    if(completed.includes(n))b.style.borderColor="#f0d18d";
-    b.onclick=()=>startLevel(c,l);
-    box.appendChild(b);
-  }
+ currentChapter=c;showOnly("levelScreen");
+ document.getElementById("levelHeading").textContent=
+  "فصل "+c+" ـ "+chapterNames[c-1];
+ const box=document.getElementById("levels");box.innerHTML="";
+ for(let l=1;l<=15;l++){
+  const n=(c-1)*15+l;
+  const b=document.createElement("button");
+  b.className="level-btn";
+  b.textContent=completed.includes(n)?"✓ "+l:l;
+  b.disabled=n>maxUnlocked;
+  b.onclick=()=>startLevel(c,l);
+  box.appendChild(b);
+ }
 }
 
-/* ساخت مسیر تصادفی، پیوسته و قابل‌حل برای حرکت در ۸ جهت */
-function makeRandomPath(requiredGoods){
-  const target={x:size-1,y:size-1};
-  const path=[{x:0,y:0}];
-  const visited=new Set([posKey(0,0)]);
-
-  function search(x,y){
-    if(x===target.x&&y===target.y){
-      return path.length-2>=requiredGoods;
-    }
-
-    const directions=[
-      {x:1,y:0},{x:-1,y:0},
-      {x:0,y:1},{x:0,y:-1},
-      {x:1,y:1},{x:-1,y:-1},
-      {x:1,y:-1},{x:-1,y:1}
-    ];
-
-    // مرتب‌سازی تصادفی جهت‌ها
-    for(let i=directions.length-1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [directions[i],directions[j]]=[directions[j],directions[i]];
-    }
-
-    for(const d of directions){
-      const nx=x+d.x,ny=y+d.y;
-      if(nx<0||ny<0||nx>=size||ny>=size)continue;
-
-      const key=posKey(nx,ny);
-      if(visited.has(key))continue;
-
-      visited.add(key);
-      path.push({x:nx,y:ny});
-
-      if(search(nx,ny))return true;
-
-      path.pop();
-      visited.delete(key);
-    }
-    return false;
-  }
-
-  search(0,0);
-  return path;
+/* مسیر تصادفی پیوسته؛ تعداد خانه‌های آن برای همهٔ گزینه‌ها کافی است */
+function makeRandomPath(){
+ const steps=[];
+ for(let i=0;i<size-1;i++){
+  steps.push({x:1,y:0});
+  steps.push({x:0,y:1});
+ }
+ for(let i=steps.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [steps[i],steps[j]]=[steps[j],steps[i]];
+ }
+ let x=0,y=0;
+ const path=[{x,y}];
+ for(const s of steps){
+  x+=s.x;y+=s.y;
+  path.push({x,y});
+ }
+ return path;
 }
 
 function startLevel(c,l){
-  currentChapter=c;
-  currentLevel=l;
-  size=boardSizes[c-1];
-  player={x:0,y:0};
-  hearts=3;
-  collected=new Set();
-  nextGood=0;
-  gameOver=false;
-  goods=[];
-  bads=[];
-  safeCells=[];
-  goal={x:size-1,y:size-1};
+ currentChapter=c;currentLevel=l;size=boardSizes[c-1];
+ player={x:0,y:0};hearts=3;collected=new Set();
+ nextGood=0;gameOver=false;goods=[];bads=[];safeCells=[];
+ goal={x:size-1,y:size-1};
 
-  const goodCount=Math.min(goodWords.length,c+2);
-  const path=makeRandomPath(goodCount);
-  const route=path.slice(1,-1);
+ const goodCount=Math.min(goodWords.length,c+2);
+ const path=makeRandomPath();
+ const route=path.slice(1,-1);
 
-  // گزینه‌های خوب به‌ترتیب در طول مسیر امن قرار می‌گیرند
-  route.forEach((p,i)=>{
-    if(i<goodCount){
-      goods.push({
-        x:p.x,y:p.y,
-        word:goodWords[(i+l+c-1)%goodWords.length],
-        id:i,order:i
-      });
-    }else{
-      safeCells.push({
-        x:p.x,y:p.y,
-        word:safeWords[(i+l+c-1)%safeWords.length]
-      });
-    }
-  });
-
-  // خانه‌های بیرون مسیر امن گزینه‌های بد می‌گیرند
-  const pathKeys=new Set(path.map(p=>posKey(p.x,p.y)));
-  const outside=[];
-
-  for(let y=0;y<size;y++){
-    for(let x=0;x<size;x++){
-      if(!pathKeys.has(posKey(x,y)))outside.push({x,y});
-    }
+ route.forEach((p,i)=>{
+  if(i<goodCount){
+   goods.push({
+    x:p.x,y:p.y,
+    word:goodWords[(i+l+c-1)%goodWords.length],
+    id:i,order:i
+   });
+  }else{
+   safeCells.push({
+    x:p.x,y:p.y,
+    word:safeWords[(i+l+c-1)%safeWords.length]
+   });
   }
+ });
 
-  // چینش گزینه‌های بد نیز در هر شروع مرحله تصادفی است
-  for(let i=outside.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [outside[i],outside[j]]=[outside[j],outside[i]];
+ const pathKeys=new Set(path.map(p=>key(p.x,p.y)));
+ const outside=[];
+ for(let y=0;y<size;y++){
+  for(let x=0;x<size;x++){
+   if(!pathKeys.has(key(x,y)))outside.push({x,y});
   }
+ }
+ for(let i=outside.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [outside[i],outside[j]]=[outside[j],outside[i]];
+ }
+ outside.forEach((p,i)=>bads.push({
+  x:p.x,y:p.y,word:badWords[(i+l+c-1)%badWords.length]
+ }));
 
-  outside.forEach((p,i)=>{
-    bads.push({
-      x:p.x,y:p.y,
-      word:badWords[(i+l+c-1)%badWords.length]
-    });
-  });
-
-  document.getElementById("gameHeading").textContent=
-    "فصل "+c+" ـ مرحلهٔ "+l;
-  document.getElementById("sizeStat").textContent=
-    "اندازه: "+size+"×"+size;
-  document.getElementById("message").textContent=
-    "مسیر امن را دنبال کن و گزینهٔ شمارهٔ ۱ را بردار!";
-  updateHint();
-  showOnly("gameScreen");
-  renderBoard();
+ document.getElementById("gameHeading").textContent=
+  "فصل "+c+" ـ مرحلهٔ "+l;
+ document.getElementById("sizeStat").textContent="اندازه: "+size+"×"+size;
+ document.getElementById("message").textContent="گزینهٔ شمارهٔ ۱ را پیدا کن!";
+ updateHint();showOnly("gameScreen");renderBoard();
 }
+function key(x,y){return x+","+y}
 
 function updateHint(){
-  const g=goods[nextGood];
-  document.getElementById("orderHint").textContent=g
-    ?"گزینهٔ بعدی: شمارهٔ "+(nextGood+1)+" ـ "+g.word
-    :"همهٔ گزینه‌های خوب جمع شده‌اند؛ به مقصد «اللّٰه» برو!";
+ const g=goods[nextGood];
+ document.getElementById("orderHint").textContent=g?
+  "گزینهٔ بعدی: شمارهٔ "+(nextGood+1)+" ـ "+g.word:
+  "همهٔ گزینه‌های خوب پیدا شدند؛ به مقصد «اللّٰه» برو!";
 }
 
 function renderBoard(){
-  const board=document.getElementById("board");
-  board.style.gridTemplateColumns=
-    "repeat("+size+",minmax(0,1fr))";
-  board.innerHTML="";
+ const board=document.getElementById("board");
+ board.style.gridTemplateColumns="repeat("+size+",minmax(0,1fr))";
+ board.innerHTML="";
+ const goodMap=new Map(goods.map(g=>[key(g.x,g.y),g]));
+ const badMap=new Map(bads.map(b=>[key(b.x,b.y),b]));
+ const safeMap=new Map(safeCells.map(s=>[key(s.x,s.y),s]));
 
-  const goodMap=new Map(goods.map(g=>[posKey(g.x,g.y),g]));
-  const badMap=new Map(bads.map(b=>[posKey(b.x,b.y),b]));
-  const safeMap=new Map(safeCells.map(s=>[posKey(s.x,s.y),s]));
+ for(let y=0;y<size;y++){
+  for(let x=0;x<size;x++){
+   const cell=document.createElement("div");
+   cell.className="cell";
+   const k=key(x,y);
 
-  for(let y=0;y<size;y++){
-    for(let x=0;x<size;x++){
-      const cell=document.createElement("div");
-      cell.className="cell";
-      const key=posKey(x,y);
-
-      if(player.x===x&&player.y===y){
-        cell.classList.add("player");
-        cell.textContent="🧍🏻";
-      }else if(x===goal.x&&y===goal.y){
-        cell.classList.add("goal");
-        cell.textContent="اللّٰه";
-      }else if(goodMap.has(key)){
-        const g=goodMap.get(key);
-        if(collected.has(g.id)){
-          cell.classList.add("got");
-          cell.innerHTML="<span><span class='num'>✓</span>"+
-            g.word+"</span>";
-        }else{
-          cell.classList.add("good");
-          cell.innerHTML="<span><span class='num'>گزینه "+
-            (g.order+1)+"</span>"+g.word+"</span>";
-        }
-      }else if(safeMap.has(key)){
-        cell.classList.add("safe");
-        cell.textContent=safeMap.get(key).word;
-      }else if(badMap.has(key)){
-        cell.classList.add("bad");
-        cell.textContent=badMap.get(key).word;
-      }else{
-        // جلوگیری از خانهٔ خالی
-        cell.classList.add("safe");
-        cell.textContent="صبر";
-      }
-
-      board.appendChild(cell);
+   if(player.x===x&&player.y===y){
+    cell.classList.add("player");cell.textContent="🧍🏻";
+   }else if(x===goal.x&&y===goal.y){
+    cell.classList.add("goal");cell.textContent="اللّٰه";
+   }else if(goodMap.has(k)){
+    const g=goodMap.get(k);
+    if(collected.has(g.id)){
+     cell.classList.add("checked");
+     cell.innerHTML="<span><span class='tick'>✓</span>"+g.word+"</span>";
+    }else{
+     cell.textContent=g.word;
     }
+   }else if(safeMap.has(k)){
+    cell.textContent=safeMap.get(k).word;
+   }else if(badMap.has(k)){
+    cell.textContent=badMap.get(k).word;
+   }else{
+    cell.textContent="صبر";
+   }
+   board.appendChild(cell);
   }
-
-  document.getElementById("heartStat").textContent=
-    "❤️".repeat(hearts)+"💔".repeat(3-hearts);
-  document.getElementById("itemStat").textContent=
-    "گزینه‌ها: "+collected.size+"/"+goods.length;
+ }
+ document.getElementById("heartStat").textContent=
+  "❤️".repeat(hearts)+"💔".repeat(3-hearts);
+ document.getElementById("itemStat").textContent=
+  "گزینه‌ها: "+collected.size+"/"+goods.length;
 }
 
 function move(dx,dy){
-  if(gameOver||(!dx&&!dy))return;
+ if(gameOver||(!dx&&!dy))return;
+ const nx=player.x+dx,ny=player.y+dy;
+ if(nx<0||ny<0||nx>=size||ny>=size)return;
 
-  const nx=player.x+dx,ny=player.y+dy;
-  if(nx<0||ny<0||nx>=size||ny>=size)return;
-
-  if(nx===goal.x&&ny===goal.y){
-    if(nextGood===goods.length){
-      player={x:nx,y:ny};
-      winLevel();
-    }else{
-      document.getElementById("message").textContent=
-        "اول همهٔ گزینه‌های خوب را به‌ترتیب جمع کن!";
-    }
-    return;
-  }
-
-  const bad=bads.find(b=>b.x===nx&&b.y===ny);
-  if(bad){
-    hearts--;
-    if(hearts<=0){
-      gameOver=true;
-      document.getElementById("message").textContent=
-        "قلب‌ها تمام شدند! مرحله از نو شروع می‌شود.";
-      renderBoard();
-      setTimeout(()=>startLevel(currentChapter,currentLevel),1000);
-      return;
-    }
-    player={x:0,y:0};
-    document.getElementById("message").textContent=
-      "خانهٔ بد «"+bad.word+"»! یک قلب کم شد و به شروع برگشتی.";
-    renderBoard();
-    return;
-  }
-
-  player={x:nx,y:ny};
-  const good=goods.find(
-    g=>g.x===nx&&g.y===ny&&!collected.has(g.id)
-  );
-
-  if(good){
-    if(good.order===nextGood){
-      collected.add(good.id);
-      nextGood++;
-      document.getElementById("message").textContent=
-        "آفرین! گزینهٔ «"+good.word+"» را پیدا کردی.";
-      updateHint();
-    }else{
-      document.getElementById("message").textContent=
-        "اول گزینهٔ شمارهٔ "+(nextGood+1)+" را پیدا کن.";
-    }
+ if(nx===goal.x&&ny===goal.y){
+  if(nextGood===goods.length){
+   player={x:nx,y:ny};winLevel();
   }else{
-    const safe=safeCells.find(s=>s.x===nx&&s.y===ny);
-    document.getElementById("message").textContent=
-      safe?"این خانه امن است؛ ادامه بده!":"";
+   document.getElementById("message").textContent=
+    "اول همهٔ گزینه‌های خوب را به‌ترتیب پیدا کن!";
   }
-  renderBoard();
+  return;
+ }
+
+ const bad=bads.find(b=>b.x===nx&&b.y===ny);
+ if(bad){
+  hearts--;
+  if(hearts<=0){
+   gameOver=true;
+   document.getElementById("message").textContent=
+    "قلب‌ها تمام شدند؛ مرحله دوباره شروع می‌شود.";
+   renderBoard();
+   setTimeout(()=>startLevel(currentChapter,currentLevel),900);
+   return;
+  }
+  player={x:0,y:0};
+  document.getElementById("message").textContent=
+   "این خانه درست نبود؛ یک قلب کم شد و به شروع برگشتی.";
+  renderBoard();return;
+ }
+
+ player={x:nx,y:ny};
+ const good=goods.find(g=>g.x===nx&&g.y===ny&&!collected.has(g.id));
+
+ if(good){
+  if(good.order===nextGood){
+   collected.add(good.id);nextGood++;
+   document.getElementById("message").textContent=
+    "آفرین! ✓ گزینهٔ «"+good.word+"» ثبت شد.";
+   updateHint();
+  }else{
+   document.getElementById("message").textContent=
+    "این گزینه بعداً است؛ اول گزینهٔ شمارهٔ "+(nextGood+1)+" را پیدا کن.";
+  }
+ }else{
+  document.getElementById("message").textContent="ادامه بده!";
+ }
+ renderBoard();
 }
 
 function winLevel(){
-  gameOver=true;
-  const n=(currentChapter-1)*15+currentLevel;
+ gameOver=true;
+ const n=(currentChapter-1)*15+currentLevel;
+ if(!completed.includes(n))completed.push(n);
+ if(n<75)maxUnlocked=Math.max(maxUnlocked,n+1);
+ saveProgress();renderBoard();
 
-  if(!completed.includes(n))completed.push(n);
-  if(n<75)maxUnlocked=Math.max(maxUnlocked,n+1);
-  saveProgress();
-  renderBoard();
+ const msg=document.getElementById("message");
+ msg.textContent=n===75?
+  "تبریک! هر ۷۵ مرحله را کامل کردی! 🎉":
+  "آفرین! مرحله را کامل کردی و به مقصد رسیدی. ✨";
 
-  const message=document.getElementById("message");
-  message.textContent=n===75
-    ?"تبریک! هر ۷۵ مرحله را کامل کردی! 🎉"
-    :"آفرین! به مقصد رسیدی و مرحله را کامل کردی. ✨";
-
-  const next=document.createElement("button");
-  next.textContent=n===75?"بازگشت به نقشه":"مرحلهٔ بعدی ←";
-  next.onclick=()=>{
-    if(n===75){
-      showChapters();
-      return;
-    }
-    const nn=n+1;
-    startLevel(Math.ceil(nn/15),((nn-1)%15)+1);
-  };
-  message.appendChild(document.createElement("br"));
-  message.appendChild(next);
+ const next=document.createElement("button");
+ next.textContent=n===75?"بازگشت به فصل‌ها":"مرحلهٔ بعدی ←";
+ next.onclick=()=>{
+  if(n===75){showChapters();return}
+  const nn=n+1;
+  startLevel(Math.ceil(nn/15),((nn-1)%15)+1);
+ };
+ msg.appendChild(document.createElement("br"));
+ msg.appendChild(next);
 }
 
 function resetProgress(){
-  if(!confirm("آیا مطمئنی که می‌خواهی تمام پیشرفت بازی پاک شود؟"))return;
-  maxUnlocked=1;
-  completed=[];
-  saveProgress();
-  goHome();
+ if(!confirm("تمام پیشرفت بازی پاک شود؟"))return;
+ maxUnlocked=1;completed=[];saveProgress();goHome();
 }
 
 document.addEventListener("keydown",e=>{
-  const keys={
-    ArrowUp:[0,-1],
-    ArrowDown:[0,1],
-    ArrowLeft:[-1,0],
-    ArrowRight:[1,0],
-    Home:[-1,-1],
-    PageUp:[1,-1],
-    End:[-1,1],
-    PageDown:[1,1]
-  };
-
-  if(keys[e.key]&&
-     !document.getElementById("gameScreen").classList.contains("hidden")){
-    e.preventDefault();
-    move(...keys[e.key]);
-  }
+ const map={
+  ArrowUp:[0,-1],ArrowDown:[0,1],
+  ArrowLeft:[-1,0],ArrowRight:[1,0],
+  Home:[-1,-1],PageUp:[1,-1],
+  End:[-1,1],PageDown:[1,1],
+  Numpad7:[-1,-1],Numpad9:[1,-1],
+  Numpad1:[-1,1],Numpad3:[1,1]
+ };
+ if(map[e.key]&&!document.getElementById("gameScreen").classList.contains("hidden")){
+  e.preventDefault();move(map[e.key][0],map[e.key][1]);
+ }
 });
 </script>
 </body>
