@@ -111,13 +111,19 @@ button.secondary{background:#ffffff08}
   box-shadow:0 0 18px #d9b66f50,inset 0 1px 0 #fff5;
   z-index:1;line-height:1;
 }
-.cell.got{color:#c5aa70;background:linear-gradient(145deg,#d9b66f18,#0003)}
+.cell.got{
+  color:#c5aa70;background:linear-gradient(145deg,#d9b66f18,#0003);
+}
 .controls{
-  display:grid;grid-template-columns:repeat(3,60px);
-  justify-content:center;gap:6px;margin:12px auto;
+  display:grid;
+  grid-template-columns:repeat(3,60px);
+  grid-template-rows:repeat(3,48px);
+  justify-content:center;
+  gap:6px;
+  margin:12px auto;
 }
 .controls button{
-  height:48px;font-size:22px;margin:0;padding:0;
+  width:60px;height:48px;font-size:22px;margin:0;padding:0;
   background:linear-gradient(145deg,#5b4625,#21190e);
 }
 #message{min-height:30px;color:var(--light);font-size:14px;line-height:1.9}
@@ -131,6 +137,7 @@ footer{
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">اللّٰه</div>
   <h1>مسیر شناخت خدا</h1>
@@ -141,7 +148,7 @@ footer{
   <section id="home" class="panel">
     <h2>به بازی خوش آمدی!</h2>
     <p>گزینه‌های خوب را به‌ترتیب جمع کن و سپس به مقصد «اللّٰه» برس.</p>
-    <p class="small">مسیر اصلی در هر مرحله متفاوت است؛ برای رسیدن به گزینه‌های خوب لازم نیست از خانه‌های بد عبور کنی.</p>
+    <p class="small">با ۸ جهت حرکت کن. مسیر امن در هر مرحله تغییر می‌کند.</p>
     <button onclick="showChapters()">شروع بازی</button>
     <button class="secondary" onclick="resetProgress()">پاک کردن پیشرفت</button>
   </section>
@@ -168,13 +175,20 @@ footer{
     </div>
     <p class="small" id="orderHint">ترتیب گزینه‌های خوب را رعایت کن.</p>
     <div id="board" aria-label="صفحه بازی"></div>
-    <div class="controls" aria-label="دکمه‌های حرکت">
-      <span></span><button onclick="move(0,-1)" aria-label="بالا">▲</button><span></span>
+
+    <div class="controls" aria-label="دکمه‌های حرکت در هشت جهت">
+      <button onclick="move(-1,-1)" aria-label="بالا چپ">↖</button>
+      <button onclick="move(0,-1)" aria-label="بالا">▲</button>
+      <button onclick="move(1,-1)" aria-label="بالا راست">↗</button>
       <button onclick="move(-1,0)" aria-label="چپ">◀</button>
-      <button onclick="move(0,1)" aria-label="پایین">▼</button>
+      <button disabled aria-label="مرکز">✦</button>
       <button onclick="move(1,0)" aria-label="راست">▶</button>
+      <button onclick="move(-1,1)" aria-label="پایین چپ">↙</button>
+      <button onclick="move(0,1)" aria-label="پایین">▼</button>
+      <button onclick="move(1,1)" aria-label="پایین راست">↘</button>
     </div>
-    <p class="small">با دکمه‌ها یا کلیدهای جهت‌دار حرکت کن.</p>
+
+    <p class="small">با دکمه‌ها یا کلیدهای جهت‌دار حرکت کن. برای مورب رفتن از دکمه‌های مورب استفاده کن.</p>
     <div id="message" role="status" aria-live="polite"></div>
     <button class="secondary" onclick="showLevels(currentChapter)">فهرست مراحل</button>
     <button class="secondary" onclick="showChapters()">نقشهٔ فصل‌ها</button>
@@ -215,8 +229,8 @@ try{
 let maxUnlocked=Math.max(1,Math.min(75,Number(saved.maxUnlocked)||1));
 let completed=Array.isArray(saved.completed)?saved.completed:[];
 let currentChapter=1,currentLevel=1,size=4;
-let player={x:0,y:0},hearts=3,goods=[],bads=[],safeCells=[],goal={x:0,y:0};
-let collected=new Set(),nextGood=0,gameOver=false;
+let player={x:0,y:0},hearts=3,goods=[],bads=[],safeCells=[];
+let goal={x:0,y:0},collected=new Set(),nextGood=0,gameOver=false;
 
 function saveProgress(){
   try{
@@ -232,6 +246,7 @@ function showOnly(id){
   });
 }
 function goHome(){showOnly("home")}
+function posKey(x,y){return x+","+y}
 
 function showChapters(){
   showOnly("chapterScreen");
@@ -268,34 +283,30 @@ function showLevels(c){
     box.appendChild(b);
   }
 }
-function posKey(x,y){return x+","+y}
-function shuffle(a){
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
-  }
-  return a;
-}
 
-/*
-  مسیر تصادفی و پیوسته با جست‌وجوی عقب‌گرد.
-  مسیر از شروع (0,0) تا مقصد (size-1,size-1) می‌رود.
-  خانه‌های مسیر فقط خوب یا امن هستند؛
-  خانه‌های بد فقط خارج از مسیر قرار می‌گیرند.
-*/
-function makeRandomPath(){
-  const start={x:0,y:0};
+/* ساخت مسیر تصادفی، پیوسته و قابل‌حل برای حرکت در ۸ جهت */
+function makeRandomPath(requiredGoods){
   const target={x:size-1,y:size-1};
-  const path=[start];
-  const visited=new Set([posKey(start.x,start.y)]);
+  const path=[{x:0,y:0}];
+  const visited=new Set([posKey(0,0)]);
 
   function search(x,y){
-    if(x===target.x&&y===target.y)return true;
+    if(x===target.x&&y===target.y){
+      return path.length-2>=requiredGoods;
+    }
 
-    const directions=shuffle([
+    const directions=[
       {x:1,y:0},{x:-1,y:0},
-      {x:0,y:1},{x:0,y:-1}
-    ]);
+      {x:0,y:1},{x:0,y:-1},
+      {x:1,y:1},{x:-1,y:-1},
+      {x:1,y:-1},{x:-1,y:1}
+    ];
+
+    // مرتب‌سازی تصادفی جهت‌ها
+    for(let i=directions.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [directions[i],directions[j]]=[directions[j],directions[i]];
+    }
 
     for(const d of directions){
       const nx=x+d.x,ny=y+d.y;
@@ -304,7 +315,6 @@ function makeRandomPath(){
       const key=posKey(nx,ny);
       if(visited.has(key))continue;
 
-      // از مقصد فقط وقتی استفاده می‌کنیم که مسیر به آن برسد.
       visited.add(key);
       path.push({x:nx,y:ny});
 
@@ -334,52 +344,42 @@ function startLevel(c,l){
   safeCells=[];
   goal={x:size-1,y:size-1};
 
-  // مسیر تصادفی جدید برای هر بار شروع مرحله
-  const path=makeRandomPath();
-
-  // مسیر بدون شروع و مقصد
-  const route=path.slice(1,-1);
-  shuffle(route);
-
-  // مسیر را دوباره مرتب می‌کنیم؛ گزینه‌ها باید در ترتیب حرکت باشند.
-  // ترتیب اصلی مسیر در path حفظ می‌شود.
-  const orderedRoute=path.slice(1,-1);
   const goodCount=Math.min(goodWords.length,c+2);
+  const path=makeRandomPath(goodCount);
+  const route=path.slice(1,-1);
 
-  for(let i=0;i<orderedRoute.length;i++){
-    const p=orderedRoute[i];
+  // گزینه‌های خوب به‌ترتیب در طول مسیر امن قرار می‌گیرند
+  route.forEach((p,i)=>{
     if(i<goodCount){
       goods.push({
-        x:p.x,
-        y:p.y,
+        x:p.x,y:p.y,
         word:goodWords[(i+l+c-1)%goodWords.length],
-        id:i,
-        order:i
+        id:i,order:i
       });
     }else{
       safeCells.push({
-        x:p.x,
-        y:p.y,
+        x:p.x,y:p.y,
         word:safeWords[(i+l+c-1)%safeWords.length]
       });
     }
-  }
+  });
 
-  // خانه‌های خارج از مسیر، گزینه‌های بد می‌گیرند.
-  const routeKeys=new Set([
-    posKey(0,0),
-    posKey(goal.x,goal.y),
-    ...path.map(p=>posKey(p.x,p.y))
-  ]);
+  // خانه‌های بیرون مسیر امن گزینه‌های بد می‌گیرند
+  const pathKeys=new Set(path.map(p=>posKey(p.x,p.y)));
   const outside=[];
 
   for(let y=0;y<size;y++){
     for(let x=0;x<size;x++){
-      if(!routeKeys.has(posKey(x,y)))outside.push({x,y});
+      if(!pathKeys.has(posKey(x,y)))outside.push({x,y});
     }
   }
 
-  shuffle(outside);
+  // چینش گزینه‌های بد نیز در هر شروع مرحله تصادفی است
+  for(let i=outside.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [outside[i],outside[j]]=[outside[j],outside[i]];
+  }
+
   outside.forEach((p,i)=>{
     bads.push({
       x:p.x,y:p.y,
@@ -392,7 +392,7 @@ function startLevel(c,l){
   document.getElementById("sizeStat").textContent=
     "اندازه: "+size+"×"+size;
   document.getElementById("message").textContent=
-    "مسیر تصادفی را دنبال کن؛ گزینهٔ شمارهٔ ۱ اول است.";
+    "مسیر امن را دنبال کن و گزینهٔ شمارهٔ ۱ را بردار!";
   updateHint();
   showOnly("gameScreen");
   renderBoard();
@@ -419,7 +419,7 @@ function renderBoard(){
     for(let x=0;x<size;x++){
       const cell=document.createElement("div");
       cell.className="cell";
-      const k=posKey(x,y);
+      const key=posKey(x,y);
 
       if(player.x===x&&player.y===y){
         cell.classList.add("player");
@@ -427,8 +427,8 @@ function renderBoard(){
       }else if(x===goal.x&&y===goal.y){
         cell.classList.add("goal");
         cell.textContent="اللّٰه";
-      }else if(goodMap.has(k)){
-        const g=goodMap.get(k);
+      }else if(goodMap.has(key)){
+        const g=goodMap.get(key);
         if(collected.has(g.id)){
           cell.classList.add("got");
           cell.innerHTML="<span><span class='num'>✓</span>"+
@@ -438,12 +438,16 @@ function renderBoard(){
           cell.innerHTML="<span><span class='num'>گزینه "+
             (g.order+1)+"</span>"+g.word+"</span>";
         }
-      }else if(safeMap.has(k)){
+      }else if(safeMap.has(key)){
         cell.classList.add("safe");
-        cell.textContent=safeMap.get(k).word;
-      }else if(badMap.has(k)){
+        cell.textContent=safeMap.get(key).word;
+      }else if(badMap.has(key)){
         cell.classList.add("bad");
-        cell.textContent=badMap.get(k).word;
+        cell.textContent=badMap.get(key).word;
+      }else{
+        // جلوگیری از خانهٔ خالی
+        cell.classList.add("safe");
+        cell.textContent="صبر";
       }
 
       board.appendChild(cell);
@@ -457,7 +461,7 @@ function renderBoard(){
 }
 
 function move(dx,dy){
-  if(gameOver)return;
+  if(gameOver||(!dx&&!dy))return;
 
   const nx=player.x+dx,ny=player.y+dy;
   if(nx<0||ny<0||nx>=size||ny>=size)return;
@@ -468,12 +472,10 @@ function move(dx,dy){
       winLevel();
     }else{
       document.getElementById("message").textContent=
-        "هنوز همهٔ گزینه‌های خوب را به‌ترتیب جمع نکرده‌ای!";
+        "اول همهٔ گزینه‌های خوب را به‌ترتیب جمع کن!";
     }
     return;
   }
-
-  player={x:nx,y:ny};
 
   const bad=bads.find(b=>b.x===nx&&b.y===ny);
   if(bad){
@@ -486,14 +488,14 @@ function move(dx,dy){
       setTimeout(()=>startLevel(currentChapter,currentLevel),1000);
       return;
     }
-
     player={x:0,y:0};
     document.getElementById("message").textContent=
-      "خانهٔ بد «"+bad.word+"»! یک قلب کم شد.";
+      "خانهٔ بد «"+bad.word+"»! یک قلب کم شد و به شروع برگشتی.";
     renderBoard();
     return;
   }
 
+  player={x:nx,y:ny};
   const good=goods.find(
     g=>g.x===nx&&g.y===ny&&!collected.has(g.id)
   );
@@ -514,7 +516,6 @@ function move(dx,dy){
     document.getElementById("message").textContent=
       safe?"این خانه امن است؛ ادامه بده!":"";
   }
-
   renderBoard();
 }
 
@@ -556,11 +557,18 @@ function resetProgress(){
 
 document.addEventListener("keydown",e=>{
   const keys={
-    ArrowUp:[0,-1],ArrowDown:[0,1],
-    ArrowLeft:[-1,0],ArrowRight:[1,0]
+    ArrowUp:[0,-1],
+    ArrowDown:[0,1],
+    ArrowLeft:[-1,0],
+    ArrowRight:[1,0],
+    Home:[-1,-1],
+    PageUp:[1,-1],
+    End:[-1,1],
+    PageDown:[1,1]
   };
+
   if(keys[e.key]&&
-    !document.getElementById("gameScreen").classList.contains("hidden")){
+     !document.getElementById("gameScreen").classList.contains("hidden")){
     e.preventDefault();
     move(...keys[e.key]);
   }
