@@ -24,6 +24,13 @@ button:disabled{opacity:.4;cursor:default}
 .hidden{display:none!important}
 .credits{margin:18px auto 4px;padding:12px 8px;border-top:1px solid #d9b66f45;line-height:2.2;font-size:13px;color:#f1dfb9}
 .credits div{margin:2px}
+.channel-menu{display:flex;align-items:center;gap:12px;width:100%;margin:18px auto;padding:14px 12px;text-align:right;text-decoration:none;color:#f8e5ae;border:1px solid #d9b66f88;border-radius:16px;background:linear-gradient(135deg,#5a4524,#21190e 65%,#100d08);box-shadow:inset 0 1px 0 #ffffff20,0 5px 16px #0005}
+.channel-menu:active{transform:scale(.98)}
+.channel-icon{font-size:29px}
+.channel-text{display:flex;flex:1;flex-direction:column;gap:6px;line-height:1.8}
+.channel-text strong{font-size:13px}
+.channel-text small{font-size:11px;color:#d5bd88}
+.channel-arrow{font-size:22px;color:#f8e5ae}
 #chapters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .chapter{min-height:88px;line-height:1.9}
 #levels{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
@@ -33,7 +40,7 @@ button:disabled{opacity:.4;cursor:default}
 #board{direction:ltr;display:grid;gap:5px;margin:16px auto;width:min(100%,410px);aspect-ratio:1;padding:5px;border-radius:17px;border:1px solid #d9b66f45;background:#0c0a07;box-shadow:0 10px 28px #0008}
 .cell{direction:rtl;min-width:0;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;overflow-wrap:anywhere;padding:2px;border-radius:9px;font-size:clamp(9px,2.7vw,14px);color:#f0dfb9;background:linear-gradient(145deg,#322819,#21190f 55%,#18130c);border:1px solid #80683c;box-shadow:inset 0 1px 0 #ffffff16,inset 0 -4px 10px #0004}
 .cell.player{direction:ltr;font-size:clamp(29px,8vw,45px);border:2px solid #f4d88f;background:linear-gradient(145deg,#65502d,#302416);box-shadow:0 0 14px #d9b66f40}
-.cell.goal{color:#ffe3a0;border:2px solid #d9b66f;font-family:Tahoma,Arial,sans-serif;font-size:clamp(16px,4.4vw,23px);font-weight:bold}
+.cell.goal{color:#ffe3a0;border:2px solid #d9b66f;font-size:clamp(16px,4.4vw,23px);font-weight:bold}
 .cell.checked{color:#f9e5ae}
 .cell.checked .tick{display:block;color:#b8f0a1;font-size:19px;font-weight:bold;line-height:1.1;margin-bottom:2px}
 .cell .tick{display:none}
@@ -62,6 +69,15 @@ footer{border-top:1px solid #d9b66f35;padding:15px 8px 24px;color:#bfb39a;font-s
    <div>✦ کلاس: ۷/۲</div>
    <div>✦ مدرسه: علامه حلّی شهر قدس</div>
   </div>
+
+  <a class="channel-menu" href="https://ble.ir/arabic77777" target="_blank" rel="noopener noreferrer">
+   <span class="channel-icon">📚</span>
+   <span class="channel-text">
+    <strong>عضویت در کانال عربی هفتم در بله</strong>
+    <small>برای ورود به کانال کلیک کن</small>
+   </span>
+   <span class="channel-arrow">↗</span>
+  </a>
 
   <button onclick="showChapters()">شروع بازی</button>
   <button class="secondary" onclick="resetProgress()">پاک کردن پیشرفت</button>
@@ -156,8 +172,6 @@ function showLevels(c){
  }
 }
 function key(x,y){return x+","+y}
-
-/* مسیر امن تصادفی با حرکت‌های راست و پایین؛ همیشه به مقصد متصل است */
 function makeRandomPath(){
  const steps=[];
  for(let i=0;i<size-1;i++){steps.push({x:1,y:0});steps.push({x:0,y:1})}
@@ -175,19 +189,16 @@ function startLevel(c,l){
  goods=[];bads=[];safeCells=[];goal={x:size-1,y:size-1};
  const goodCount=Math.min(goodWords.length,c+2);
  const path=makeRandomPath(),route=path.slice(1,-1);
-
  route.forEach((p,i)=>{
   if(i<goodCount)goods.push({x:p.x,y:p.y,word:goodWords[(i+l+c-1)%goodWords.length],id:i,order:i});
   else safeCells.push({x:p.x,y:p.y,word:safeWords[(i+l+c-1)%safeWords.length]});
  });
-
  const pathKeys=new Set(path.map(p=>key(p.x,p.y))),outside=[];
  for(let y=0;y<size;y++)for(let x=0;x<size;x++)if(!pathKeys.has(key(x,y)))outside.push({x,y});
  for(let i=outside.length-1;i>0;i--){
   const j=Math.floor(Math.random()*(i+1));[outside[i],outside[j]]=[outside[j],outside[i]];
  }
  outside.forEach((p,i)=>bads.push({x:p.x,y:p.y,word:badWords[(i+l+c-1)%badWords.length]}));
-
  document.getElementById("gameHeading").textContent="فصل "+c+" ـ مرحلهٔ "+l;
  document.getElementById("sizeStat").textContent="اندازه: "+size+"×"+size;
  document.getElementById("message").textContent="گزینهٔ شمارهٔ ۱ را پیدا کن!";
