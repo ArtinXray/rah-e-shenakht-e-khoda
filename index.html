@@ -1,369 +1,230 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10152f">
-<title>مسیر شناخت خدا | ماجراجویی</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مسیر شناخت خدا</title>
 <style>
-:root{
-  --bg:#0b1026;--panel:#151d3d;--panel2:#1b2850;--text:#f7f8ff;
-  --muted:#b8c3e8;--gold:#ffd66b;--cyan:#78e7f3;--purple:#b8a0ff;
-  --green:#83e6b0;--red:#ff9d9d;--line:rgba(255,255,255,.12);
-}
 *{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;color:var(--text);
-  font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.8;
-  background:
-    radial-gradient(ellipse at 50% 0%,rgba(74,85,180,.28),transparent 55%),
-    radial-gradient(circle at 15% 35%,rgba(83,210,235,.10),transparent 22%),
-    linear-gradient(160deg,#080c1c,#10152f 55%,#17163a);
-}
-button{font:inherit;cursor:pointer}
-button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
-.app{max-width:880px;margin:auto;padding:18px 14px 40px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;
-  background:linear-gradient(135deg,#ffd66b,#ff9f70);color:#202344;font-size:25px;font-weight:900;
-  box-shadow:0 0 28px rgba(255,214,107,.18)}
-h1{font-size:clamp(19px,4vw,27px);line-height:1.35;margin:0}
-.subtitle{font-size:12px;color:var(--muted)}
-.pill{border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--gold);font-size:13px;white-space:nowrap}
-.hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:25px;padding:25px 20px 22px;
-  background:linear-gradient(125deg,rgba(36,52,105,.92),rgba(21,25,60,.92));}
-.hero:before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;left:-48px;top:-80px;
-  background:radial-gradient(circle,rgba(120,231,243,.22),transparent 70%)}
-.stars{position:absolute;inset:0;pointer-events:none;opacity:.8;background-image:
-  radial-gradient(2px 2px at 12% 22%,#fff,transparent),radial-gradient(2px 2px at 28% 65%,#ffd66b,transparent),
-  radial-gradient(1.5px 1.5px at 73% 23%,#fff,transparent),radial-gradient(2px 2px at 88% 58%,#78e7f3,transparent),
-  radial-gradient(1px 1px at 56% 78%,#fff,transparent)}
-.hero-content{position:relative;z-index:1}
-.eyebrow{color:var(--cyan);font-size:13px;font-weight:bold;letter-spacing:.2px}
-.hero h2{font-size:clamp(23px,5vw,36px);line-height:1.5;margin:7px 0}
-.hero p{color:#dce3ff;margin:8px 0 16px;max-width:600px}
-.primary,.secondary,.ghost{border:0;border-radius:13px;padding:11px 17px;font-weight:bold;transition:transform .15s,filter .15s}
-.primary{background:linear-gradient(120deg,var(--gold),#ffb86b);color:#24203d;box-shadow:0 7px 18px #0002}
-.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
-.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
-.primary:hover,.secondary:hover,.ghost:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}
-.stat{padding:11px 12px;background:rgba(21,29,61,.85);border:1px solid var(--line);border-radius:15px}
-.stat strong{display:block;color:var(--gold);font-size:20px}
-.stat span{font-size:12px;color:var(--muted)}
-.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:23px 2px 10px}
-.section-title h3{margin:0;font-size:18px}
-.section-title span{font-size:12px;color:var(--muted)}
-.map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.stage{position:relative;text-align:right;width:100%;padding:15px;border-radius:18px;
-  border:1px solid var(--line);background:linear-gradient(145deg,rgba(28,39,79,.94),rgba(17,23,51,.94));color:var(--text)}
-.stage .emoji{font-size:27px;display:block;margin-bottom:4px}
-.stage strong{display:block;font-size:15px}
-.stage small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
-.stage .state{display:inline-block;margin-top:10px;font-size:11px;color:var(--cyan);border:1px solid #78e7f344;padding:2px 8px;border-radius:999px}
-.stage.locked{opacity:.5;cursor:not-allowed;filter:saturate(.6)}
-.stage.done{border-color:#83e6b077}
-.stage.done .state{color:var(--green);border-color:#83e6b055}
-.panel{margin-top:15px;padding:19px;border:1px solid var(--line);border-radius:21px;background:rgba(21,29,61,.94)}
+body{margin:0;background:#10251f;color:white;font-family:Tahoma,Arial;text-align:center;padding:12px}
+main{max-width:540px;margin:auto}
+h1{color:#ffe08a;font-size:24px}
+p{line-height:1.9;font-size:13px;color:#d6e8df}
+.panel{background:#203b31;padding:12px;border-radius:16px;margin:12px 0}
+button{border:0;border-radius:12px;padding:12px;font-size:15px;font-weight:bold;cursor:pointer}
+#map{position:relative;overflow:hidden;background:linear-gradient(145deg,#356d49,#234e3a 50%,#45764b);border-radius:18px;padding:14px 5px;min-height:440px}
+.mapPath{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.region{position:absolute;transform:translate(-50%,-50%);width:125px;padding:10px 5px;border:2px solid #c7e8a1;background:#28543b;color:white;box-shadow:0 4px 0 #183a29}
+.region .emoji{font-size:27px;display:block;margin-bottom:4px}
+.region small{display:block;font-size:10px;margin-top:5px}
+.region.lock{filter:grayscale(1);opacity:.6}
+.region.done{background:#b28b2e;color:#fff}
+#stats{display:flex;justify-content:space-around;gap:6px;flex-wrap:wrap}
+#stats span{background:#365648;border-radius:9px;padding:9px;font-size:13px}
+#hearts{color:#ff8394;font-size:19px}
+#board{display:grid;gap:4px;margin:12px auto;max-width:440px}
+.cell{aspect-ratio:1;min-width:0;border-radius:7px;background:#b9d6a0;color:#173827;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;font-size:clamp(17px,5vw,27px);border:1px solid #d5e9c6}
+.cell small{font-size:clamp(7px,2vw,10px);font-weight:bold}
+.player{background:#2878e8;color:white;border:2px solid #b9dcff}
+.good{background:#368558;color:white}
+.bad{background:#a64444;color:white}
+.goal{background:#ffda70}
+#message{min-height:42px;line-height:1.8;color:#ffe08a;font-size:13px}
+.controls{display:grid;grid-template-columns:repeat(3,64px);gap:7px;justify-content:center;margin:14px}
+.controls button{height:54px;background:#ffda70}
+.secondary{background:#d8e7df;color:#173827;margin:4px}
 .hidden{display:none!important}
-.backrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
-.backrow button{padding:6px 11px}
-.progress{height:7px;border-radius:20px;background:#ffffff16;overflow:hidden;margin:8px 0 17px}
-.progress div{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));width:0%;transition:width .25s}
-.qcount{color:var(--cyan);font-size:12px;font-weight:bold}
-.question{font-size:19px;font-weight:bold;line-height:1.8;margin:8px 0 15px}
-.answers{display:grid;gap:9px}
-.answer{display:flex;align-items:flex-start;gap:10px;text-align:right;width:100%;padding:12px 13px;
-  border-radius:13px;background:#202b54;border:1px solid var(--line);color:var(--text)}
-.answer .letter{flex:0 0 27px;width:27px;height:27px;display:grid;place-items:center;border-radius:8px;
-  background:#ffffff12;color:var(--gold);font-weight:bold}
-.answer.correct{border-color:var(--green);background:#153b3b}
-.answer.wrong{border-color:var(--red);background:#402532}
-.answer:disabled{cursor:default}
-.feedback{margin-top:13px;border-radius:13px;padding:12px 14px;background:#ffffff09;border:1px solid var(--line)}
-.feedback.good{border-color:#83e6b077}
-.feedback.bad{border-color:#ff9d9d77}
-.feedback strong{display:block;margin-bottom:3px}
-.reference{font-size:12px;color:var(--gold);margin-top:7px}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
-.story-icon{font-size:43px;text-align:center;margin:4px 0}
-.story-title{text-align:center;font-size:23px;margin:0}
-.story-intro{text-align:center;color:var(--muted);max-width:570px;margin:8px auto 18px}
-.result{text-align:center;padding:12px 0}
-.result .big{font-size:54px}
-.result h3{font-size:24px;margin:0}
-.result p{color:var(--muted)}
-.note{font-size:12px;color:var(--muted);margin-top:20px;padding:13px;border-right:3px solid var(--purple);background:#ffffff07;border-radius:8px}
-footer{text-align:center;color:#8894bd;font-size:11px;margin-top:20px}
-@media(max-width:520px){
- .app{padding:12px 10px 30px}.hero{padding:21px 15px}.map{gap:8px}.stage{padding:12px}
- .stats{gap:7px}.stat{padding:9px}.stat strong{font-size:18px}.panel{padding:14px}
- header{align-items:flex-start}.pill{font-size:11px;padding:4px 8px}
-}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+#credits{font-size:11px;line-height:2;color:#c5d8cf;margin:20px 0}
 </style>
 </head>
 <body>
-<div class="app">
-  <header>
-    <div class="brand">
-      <div class="logo" aria-hidden="true">✦</div>
-      <div><h1>مسیر شناخت خدا</h1><div class="subtitle">یک ماجراجویی برای فکر کردن، پرسیدن و شناختن</div></div>
-    </div>
-    <div class="pill">نسخهٔ ۱.۰</div>
-  </header>
+<main>
+<h1>🧭 مسیر شناخت خدا</h1>
+<p>در نقشه سفر کن، کارهای خوب را انتخاب کن و با نشانه‌های هدایت مسیرت را پیدا کن.</p>
 
-  <main>
-    <section id="home">
-      <div class="hero">
-        <div class="stars"></div>
-        <div class="hero-content">
-          <div class="eyebrow">✧ سفر از پرسش تا اندیشه ✧</div>
-          <h2>راه شناخت، از پرسیدن آغاز می‌شود.</h2>
-          <p>در چهار ایستگاه سفر کن؛ به نشانه‌های آفرینش نگاه کن، با خردت بیندیش و با آموزه‌های قرآن آشنا شو. هدف فقط امتیاز گرفتن نیست؛ هدف، عمیق‌تر فکر کردن است.</p>
-          <button class="primary" id="startBtn">شروع ماجراجویی ←</button>
-        </div>
-      </div>
-      <div class="stats">
-        <div class="stat"><strong id="scoreValue">۰</strong><span>امتیاز</span></div>
-        <div class="stat"><strong id="completedValue">۰ از ۴</strong><span>ایستگاه کامل‌شده</span></div>
-        <div class="stat"><strong id="badgeValue">۰</strong><span>نشان به‌دست‌آمده</span></div>
-      </div>
-      <div class="section-title"><h3>نقشهٔ سفر</h3><span>هر ایستگاه، یک قدم تازه</span></div>
-      <div class="map" id="stageMap"></div>
-      <div class="note">یادآوری: این بازی برای یادگیری و اندیشیدن است. دربارهٔ پرسش‌های عمیق دینی می‌توانی با خانواده، معلم یا فرد آگاه و قابل اعتماد گفت‌وگو کنی.</div>
-    </section>
-
-    <section id="game" class="panel hidden" aria-live="polite">
-      <div class="backrow"><button class="ghost" id="mapBtn">← نقشه</button><span class="qcount" id="questionCount"></span></div>
-      <div class="eyebrow" id="stageEyebrow"></div>
-      <h2 id="stageHeading" style="margin:3px 0"></h2>
-      <div class="progress"><div id="progressFill"></div></div>
-      <div id="questionArea"></div>
-    </section>
-
-    <section id="finish" class="panel hidden">
-      <div class="result">
-        <div class="big">🌟</div>
-        <h3 id="finishTitle">آفرین، جست‌وجوگر!</h3>
-        <p id="finishText"></p>
-        <div class="actions" style="justify-content:center">
-          <button class="primary" id="continueBtn">بازگشت به نقشه</button>
-          <button class="secondary" id="restartBtn">شروع دوبارهٔ این ایستگاه</button>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>مسیر شناخت خدا · ساخته‌شده برای یادگیری و گفت‌وگو · پیشرفت روی همین مرورگر ذخیره می‌شود.<br>طراح: آرتین کرم زاده · دبیر: استاد سید علی حسینی · مدرسهٔ علامهٔ حلّی، شهر قدس</footer>
+<section id="mapScreen" class="panel">
+<h2>🗺️ نقشهٔ ماجراجویی</h2>
+<p>برای شروع، منطقهٔ اول را انتخاب کن. با کامل کردن هر منطقه، راه منطقهٔ بعدی باز می‌شود.</p>
+<div id="map">
+<svg class="mapPath" viewBox="0 0 300 440" preserveAspectRatio="none">
+ <path d="M65 385 Q240 360 205 300 T75 220 T210 140 T130 55" fill="none" stroke="#e3d49a" stroke-width="7" stroke-dasharray="7 9" stroke-linecap="round"/>
+</svg>
 </div>
+</section>
+
+<section id="gameScreen" class="panel hidden">
+<div id="stats">
+<span>منطقه: <b id="level">۱</b></span>
+<span>اندازه: <b id="size">۴×۴</b></span>
+<span id="hearts">❤️❤️❤️</span>
+</div>
+<h3 id="regionTitle">دشت آغاز</h3>
+<div id="message">نشانه‌های خوب را پیدا کن!</div>
+<div id="board"></div>
+<p>🧍 تو　🕌 نماز　🤝 کمک　💚 مهربانی　⭐ مقصد</p>
+<div class="controls">
+<div></div><button onclick="move(0,-1)">⬆️</button><div></div>
+<button onclick="move(-1,0)">⬅️</button>
+<button onclick="move(0,1)">⬇️</button>
+<button onclick="move(1,0)">➡️</button>
+</div>
+<button class="secondary" onclick="restart()">🔄 شروع دوباره</button>
+<button class="secondary" onclick="showMap()">🗺️ بازگشت به نقشه</button>
+</section>
+
+<div id="credits">
+طراح: آرتین کرم زاده<br>
+دبیر: استاد سید علی حسینی<br>
+مدرسهٔ علامهٔ حلّی شهر قدس
+</div>
+</main>
 
 <script>
-"use strict";
-
-const stages = [
-  {
-    id:"creation", title:"نشانه‌های آفرینش", icon:"🌌",
-    subtitle:"به جهان با دقت نگاه کن",
-    intro:"در این ایستگاه، با نشانه‌های سادهٔ آفرینش آشنا می‌شوی.",
-    questions:[
-      {q:"کدام مورد از نشانه‌های آفرینش خداوند است؟",
-       a:["آسمان و زمین","دفتر و مداد","میز و صندلی","کتاب و کیف"],
-       correct:0, explanation:"آفرینش آسمان و زمین از نشانه‌های قدرت خداوند است.",
-       ref:"قرآن کریم، آل‌عمران، آیهٔ ۱۹۰"},
-      {q:"آمدوشد شب و روز ما را به چه چیزی دعوت می‌کند؟",
-       a:["بی‌توجهی به جهان","فکر کردن به نشانه‌های خدا","دست کشیدن از یادگیری","فراموش کردن نعمت‌ها"],
-       correct:1, explanation:"قرآن ما را به اندیشیدن دربارهٔ آفرینش و آمدوشد شب و روز دعوت می‌کند.",
-       ref:"قرآن کریم، آل‌عمران، آیهٔ ۱۹۰"},
-      {q:"چه کسی در باور اسلامی آفرینندهٔ جهان است؟",
-       a:["انسان","ماه","خداوند","کوه‌ها"],
-       correct:2, explanation:"در آموزه‌های اسلامی، خداوند آفرینندهٔ جهان و همهٔ موجودات است.",
-       ref:"قرآن کریم، زمر، آیهٔ ۶۲"}
-    ]
-  },
-  {
-    id:"reason", title:"چراغ خرد و اندیشه", icon:"🧭",
-    subtitle:"با عقل خود فکر کن",
-    intro:"خداوند به انسان عقل داده است تا فکر کند و راه درست را بشناسد.",
-    questions:[
-      {q:"کدام نعمت به انسان کمک می‌کند فکر کند و تصمیم بگیرد؟",
-       a:["عقل","ثروت","لباس","قد"],
-       correct:0, explanation:"عقل نعمتی است که به انسان کمک می‌کند بیندیشد و میان راه‌های مختلف انتخاب کند.",
-       ref:"پیوند موضوعی: اهمیت اندیشه در آموزه‌های اسلامی"},
-      {q:"اگر چیزی را نمی‌دانیم، چه کار بهتری می‌توانیم انجام دهیم؟",
-       a:["بدون دلیل آن را باور کنیم","از پرسیدن خجالت بکشیم","سؤال بپرسیم و پاسخ را بررسی کنیم","به دیگران بخندیم"],
-       correct:2, explanation:"پرسیدن و بررسی پاسخ‌ها به ما کمک می‌کند بهتر یاد بگیریم و درست‌تر تصمیم بگیریم.",
-       ref:"پیوند موضوعی: تفکر و یادگیری"},
-      {q:"کدام رفتار نشانهٔ استفادهٔ درست از عقل است؟",
-       a:["تصمیم گرفتن با عجله","فکر کردن پیش از انجام کار","باور کردن هر شایعه","نادیده گرفتن نتیجهٔ کار"],
-       correct:1, explanation:"فکر کردن پیش از عمل به ما کمک می‌کند نتیجهٔ کارهایمان را بهتر بسنجیم.",
-       ref:"پیوند موضوعی: خردورزی در آموزه‌های دینی"}
-    ]
-  },
-  {
-    id:"fitrah", title:"دل، وجدان و فطرت", icon:"💚",
-    subtitle:"راه خوبی را انتخاب کن",
-    intro:"در این ایستگاه، به وجدان و رفتار خوب با دیگران فکر می‌کنی.",
-    questions:[
-      {q:"وقتی کار اشتباهی انجام می‌دهیم و از درون ناراحت می‌شویم، چه چیزی را احساس می‌کنیم؟",
-       a:["غرور","وجدان","گرسنگی","خستگی"],
-       correct:1, explanation:"وجدان می‌تواند ما را متوجه اشتباه کند و به جبران آن راهنمایی کند.",
-       ref:"پیوند موضوعی: وجدان و اخلاق"},
-      {q:"کدام کار نمونه‌ای از اخلاق خوب است؟",
-       a:["دروغ گفتن","مسخره کردن دیگران","کمک به نیازمند","آزار دادن همکلاسی"],
-       correct:2, explanation:"کمک به نیازمندان یکی از رفتارهای نیکو و مورد سفارش آموزه‌های اسلامی است.",
-       ref:"قرآن کریم، سورهٔ ماعون"},
-      {q:"فطرت خداجویی به چه معناست؟",
-       a:["گرایش درونی انسان به خداجویی","علاقه به بازی‌های رایانه‌ای","توانایی دویدن سریع","یاد گرفتن یک زبان جدید"],
-       correct:0, explanation:"در آموزه‌های اسلامی، فطرت به سرشت درونی انسان اشاره دارد و آیهٔ ۳۰ سورهٔ روم از فطرت الهی سخن می‌گوید.",
-       ref:"قرآن کریم، روم، آیهٔ ۳۰"}
-    ]
-  },
-  {
-    id:"guidance", title:"چراغ هدایت و آموزه‌های دینی", icon:"📖",
-    subtitle:"از پیامبران و قرآن بیاموز",
-    intro:"در این ایستگاه، با راهنمایی پیامبران و کتاب آسمانی مسلمانان آشنا می‌شوی.",
-    questions:[
-      {q:"خداوند برای راهنمایی مردم چه کسانی را فرستاده است؟",
-       a:["بازرگانان","پیامبران","ورزشکاران","نقاشان"],
-       correct:1, explanation:"در باور اسلامی، خداوند پیامبران را برای راهنمایی انسان‌ها فرستاده است.",
-       ref:"قرآن کریم، نحل، آیهٔ ۳۶"},
-      {q:"قرآن کریم کتاب آسمانی کدام دین است؟",
-       a:["اسلام","بودایی","هندو","زرتشتی"],
-       correct:0, explanation:"قرآن کریم کتاب آسمانی مسلمانان است.",
-       ref:"قرآن کریم"},
-      {q:"چرا مسلمانان از پیامبر اسلام و اهل‌بیت ایشان پیروی می‌کنند؟",
-       a:["برای مشهور شدن","برای یادگیری راه درست زندگی","برای ثروتمند شدن","برای برتری‌جویی"],
-       correct:1, explanation:"مسلمانان از پیامبر و اهل‌بیت ایشان الگو می‌گیرند تا راه درست زندگی و اخلاق نیکو را بیاموزند.",
-       ref:"پیوند موضوعی: سیرهٔ پیامبر و اهل‌بیت(ع)"}
-    ]
-  }
+const names=[
+ ["🌱","دشت آغاز","نماز و آغاز راه"],
+ ["🌳","جنگل مهربانی","کمک و مهربانی"],
+ ["⛰️","کوهستان راستی","راست‌گویی و درستکاری"],
+ ["🌄","درهٔ هدایت","صبر و انتخاب درست"],
+ ["✨","سرزمین نور","نشانه‌های نیک"]
 ];
-
-const $ = id => document.getElementById(id);
-const faNum = n => Number(n).toLocaleString("fa-IR");
-const defaultState = () => ({score:0,completed:[],best:{},lastStage:0});
-let state = loadState();
-let currentStage = 0;
-let currentQuestion = 0;
-let currentCorrect = false;
-let sessionScore = 0;
-
-function loadState(){
-  try{
-    const saved = JSON.parse(localStorage.getItem("masir-shenakht-khoda-v1"));
-    if(saved && typeof saved.score==="number" && Array.isArray(saved.completed)) return {...defaultState(),...saved};
-  }catch(e){}
-  return defaultState();
+const NAMES=["یک","دو","سه","چهار","پنج"];
+const goodLabels=[
+ ["🕌","نماز"],["🤝","کمک"],["💚","مهربانی"],
+ ["🗣️","راست‌گویی"],["📖","دانش"],["🙏","شکرگزاری"],
+ ["👨‍👩‍👧","احترام به خانواده"]
+];
+const badLabels=[
+ ["😠","آزار دیگران"],["🤥","دروغ"],["💢","بدرفتاری"],
+ ["😒","خودخواهی"],["🚫","بی‌انصافی"],["🙄","تمسخر"],
+ ["💔","دل‌شکستن"]
+];
+const sizes=[4,5,6,7,8];
+const goodPositions=[
+ [[1,0],[2,1],[1,2]],
+ [[1,0],[2,1],[1,3],[3,2]],
+ [[1,0],[2,1],[1,3],[4,2],[3,4]],
+ [[1,0],[2,1],[1,3],[4,2],[3,4],[5,5]],
+ [[1,0],[2,1],[1,3],[4,2],[3,4],[5,5],[6,4]]
+];
+const badPositions=[
+ [[2,0],[0,2],[3,1]],
+ [[2,0],[0,2],[4,1],[2,3]],
+ [[2,0],[0,2],[4,1],[2,3],[5,3]],
+ [[2,0],[0,2],[4,1],[2,3],[5,3],[3,6]],
+ [[2,0],[0,2],[4,1],[2,3],[5,3],[3,6],[6,2]]
+];
+let unlocked=0,stage=0,player=[0,0],hearts=3,collected=[],ended=false;
+const $=id=>document.getElementById(id);
+const same=(a,b)=>a[0]===b[0]&&a[1]===b[1];
+function pos(i){return [i,i]}
+function currentSize(){return sizes[stage]}
+function start(){return [0,0]}
+function goal(){let n=currentSize();return [n-1,n-1]}
+function good(){return goodPositions[stage].map((p,i)=>({p,label:goodLabels[i]}))}
+function bad(){return badPositions[stage].map((p,i)=>({p,label:badLabels[i]}))}
+function showMap(){
+ $("mapScreen").classList.remove("hidden");
+ $("gameScreen").classList.add("hidden");
+ drawMap();
 }
-function saveState(){
-  try{localStorage.setItem("masir-shenakht-khoda-v1",JSON.stringify(state));}catch(e){}
+function drawMap(){
+ const map=$("map");
+ map.querySelectorAll(".region").forEach(e=>e.remove());
+ const coords=[
+  [22,87],[69,68],[25,50],[70,32],[43,13]
+ ];
+ names.forEach((r,i)=>{
+  const b=document.createElement("button");
+  b.className="region"+(i>unlocked?" lock":"")+(i<unlocked?" done":"");
+  b.style.left=coords[i][0]+"%";
+  b.style.top=coords[i][1]+"%";
+  b.innerHTML=`<span class="emoji">${r[0]}</span>${r[1]}<small>${i<unlocked?"✅ کامل شده":i===unlocked?"▶ ورود به منطقه":"🔒 قفل است"}</small>`;
+  b.disabled=i>unlocked;
+  b.onclick=()=>{stage=i;startLevel();};
+  map.appendChild(b);
+ });
 }
-function updateStats(){
-  $("scoreValue").textContent=faNum(state.score);
-  $("completedValue").textContent=faNum(state.completed.length)+" از ۴";
-  $("badgeValue").textContent=faNum(state.completed.length);
+function startLevel(){
+ player=start();hearts=3;collected=[];ended=false;
+ $("mapScreen").classList.add("hidden");
+ $("gameScreen").classList.remove("hidden");
+ $("level").textContent=stage+1;
+ $("size").textContent=currentSize()+" × "+currentSize();
+ $("regionTitle").textContent=names[stage][1];
+ say("نشانه‌های خوب را پیدا کن و سپس به مقصد ⭐ برس!");
+ render();
 }
-function renderMap(){
-  const map=$("stageMap");
-  map.innerHTML="";
-  stages.forEach((stage,i)=>{
-    const unlocked = i===0 || state.completed.includes(stages[i-1].id);
-    const done=state.completed.includes(stage.id);
-    const btn=document.createElement("button");
-    btn.className="stage"+(unlocked?"":" locked")+(done?" done":"");
-    btn.disabled=!unlocked;
-    btn.innerHTML=`<span class="emoji">${stage.icon}</span><strong>${faNum(i+1)}. ${stage.title}</strong><small>${stage.subtitle}</small><span class="state">${done?"✓ کامل شد":unlocked?"ورود به ایستگاه ←":"🔒 پس از ایستگاه قبلی"}</span>`;
-    btn.addEventListener("click",()=>{if(unlocked) startStage(i);});
-    map.appendChild(btn);
-  });
-  updateStats();
+function say(t){$("message").textContent=t}
+function render(){
+ const n=currentSize(),board=$("board");
+ board.innerHTML="";
+ board.style.gridTemplateColumns=`repeat(${n},minmax(0,1fr))`;
+ $("hearts").textContent="❤️".repeat(hearts)+"🖤".repeat(3-hearts);
+ for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+  const p=[x,y],el=document.createElement("div");
+  el.className="cell";
+  let emoji="",label="";
+  const gi=good().findIndex(v=>same(v.p,p));
+  const bi=bad().find(v=>same(v.p,p));
+  if(same(p,player)){el.classList.add("player");emoji="🧍";label="تو";}
+  else if(same(p,goal())){el.classList.add("goal");emoji="⭐";label="مقصد";}
+  else if(gi>=0&&!collected.includes(gi)){el.classList.add("good");emoji=good()[gi].label[0];label=good()[gi].label[1];}
+  else if(bi){el.classList.add("bad");emoji=bi.label[0];label=bi.label[1];}
+  else if(gi>=0){el.classList.add("good");emoji="✓";label="پیدا شد";}
+  el.innerHTML=emoji+(label?`<small>${label}</small>`:"");
+  board.appendChild(el);
+ }
 }
-function showSection(name){
-  $("home").classList.toggle("hidden",name!=="home");
-  $("game").classList.toggle("hidden",name!=="game");
-  $("finish").classList.toggle("hidden",name!=="finish");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function startStage(i){
-  currentStage=i;currentQuestion=0;sessionScore=0;
-  $("stageEyebrow").textContent=`ایستگاه ${faNum(i+1)} از ۴ · ${stages[i].icon}`;
-  $("stageHeading").textContent=stages[i].title;
-  showSection("game");
-  renderQuestion();
-}
-function renderQuestion(){
-  const stage=stages[currentStage], q=stage.questions[currentQuestion];
-  currentCorrect=false;
-  $("questionCount").textContent=`پرسش ${faNum(currentQuestion+1)} از ${faNum(stage.questions.length)}`;
-  $("progressFill").style.width=((currentQuestion/stage.questions.length)*100)+"%";
-  const area=$("questionArea");
-  area.innerHTML="";
-  if(currentQuestion===0){
-    const intro=document.createElement("p");
-    intro.style.color="var(--muted)";intro.textContent=stage.intro;area.appendChild(intro);
+function restart(){startLevel()}
+function move(dx,dy){
+ if(ended)return;
+ const n=currentSize(),next=[player[0]+dx,player[1]+dy];
+ if(next[0]<0||next[1]<0||next[0]>=n||next[1]>=n)return;
+ const wrong=bad().find(v=>same(v.p,next));
+ player=next;
+ if(wrong){
+  hearts--;
+  if(hearts<=0){
+   ended=true;render();
+   say("💔 قلب‌ها تمام شد؛ مرحله از اول شروع می‌شود.");
+   setTimeout(startLevel,1300);return;
   }
-  const label=document.createElement("div");label.className="qcount";label.textContent="پرسش ماجراجویی";
-  const question=document.createElement("div");question.className="question";question.textContent=q.q;
-  const answers=document.createElement("div");answers.className="answers";
-  const letters=["الف","ب","ج","د"];
-  q.a.forEach((text,i)=>{
-    const btn=document.createElement("button");btn.className="answer";
-    const letter=document.createElement("span");letter.className="letter";letter.textContent=letters[i];
-    const content=document.createElement("span");content.textContent=text;
-    btn.append(letter,content);btn.addEventListener("click",()=>chooseAnswer(i,btn,answers,q));answers.appendChild(btn);
-  });
-  area.append(label,question,answers);
+  player=start();
+  say("❌ خانهٔ «"+wrong.label[1]+"» اشتباه بود! یک قلب کم شد و به شروع برگشتی.");
+  render();return;
+ }
+ const gi=good().findIndex(v=>same(v.p,next));
+ if(gi>=0&&!collected.includes(gi)){
+  collected.push(gi);
+  say("✅ نشانهٔ «"+good()[gi].label[1]+"» را پیدا کردی!");
+ }else say("مسیر را ادامه بده!");
+ if(same(player,goal())){
+  if(collected.length<good().length){
+   say("⭐ هنوز همهٔ نشانه‌های خوب را پیدا نکرده‌ای!");
+  }else{
+   ended=true;
+   render();
+   if(stage<names.length-1){
+    unlocked=Math.max(unlocked,stage+1);
+    say("🎉 منطقه کامل شد! منطقهٔ بعدی روی نقشه باز شد.");
+    setTimeout(showMap,1400);
+   }else{
+    say("🌟 آفرین! تمام مناطق نقشه را کامل کردی. کارهای خوب راه نزدیک‌شدن به خدا هستند.");
+    $("message").textContent="🌟 آفرین! تمام مناطق نقشه را کامل کردی.";
+   }
+   return;
+  }
+ }
+ render();
 }
-function chooseAnswer(index,chosen,answers,q){
-  if(answers.dataset.answered==="yes")return;
-  answers.dataset.answered="yes";
-  [...answers.children].forEach((btn,i)=>{
-    btn.disabled=true;
-    if(i===q.correct)btn.classList.add("correct");
-  });
-  const good=index===q.correct;
-  if(good){chosen.classList.add("correct");sessionScore+=10;state.score+=10;saveState();updateStats();}
-  else chosen.classList.add("wrong");
-  const feedback=document.createElement("div");feedback.className="feedback "+(good?"good":"bad");
-  const title=document.createElement("strong");title.textContent=good?"آفرین! پاسخ درست است. +۱۰ امتیاز":"این بار نه؛ با هم یاد می‌گیریم.";
-  const explanation=document.createElement("div");explanation.textContent=q.explanation;
-  const ref=document.createElement("div");ref.className="reference";ref.textContent="منبع / پیوند: "+q.ref;
-  feedback.append(title,explanation,ref);
-  const actions=document.createElement("div");actions.className="actions";
-  const next=document.createElement("button");next.className="primary";
-  next.textContent=currentQuestion<stages[currentStage].questions.length-1?"پرسش بعدی ←":"پایان ایستگاه ✨";
-  next.addEventListener("click",()=>{
-    currentQuestion++;
-    if(currentQuestion<stages[currentStage].questions.length)renderQuestion();
-    else finishStage();
-  });
-  actions.appendChild(next);
-  const area=$("questionArea");area.append(feedback,actions);
-  $("progressFill").style.width=(((currentQuestion+1)/stages[currentStage].questions.length)*100)+"%";
-}
-function finishStage(){
-  const stage=stages[currentStage];
-  const wasDone=state.completed.includes(stage.id);
-  if(!wasDone)state.completed.push(stage.id);
-  state.best[stage.id]=Math.max(state.best[stage.id]||0,sessionScore);
-  state.lastStage=currentStage;
-  saveState();renderMap();
-  $("finishTitle").textContent=wasDone?"دوباره تمرین کردی!":"آفرین، ایستگاه کامل شد!";
-  $("finishText").textContent=`در این ایستگاه ${faNum(sessionScore)} امتیاز گرفتی. ${state.completed.length===4?"همهٔ ایستگاه‌ها را دیده‌ای؛ سفر تو به پایان این نسخه رسید، اما پرسشگری ادامه دارد.":"اگر آماده‌ای، از نقشه به ایستگاه بعدی برو."}`;
-  $("continueBtn").textContent=state.completed.length===4?"بازگشت به نقشه":"دیدن نقشهٔ سفر";
-  showSection("finish");
-}
-$("startBtn").addEventListener("click",()=>{
-  const next=stages.findIndex(s=>!state.completed.includes(s.id));
-  startStage(next===-1?0:next);
+document.addEventListener("keydown",e=>{
+ const keys={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};
+ if(keys[e.key]&&!$("gameScreen").classList.contains("hidden")){
+  e.preventDefault();move(...keys[e.key]);
+ }
 });
-$("mapBtn").addEventListener("click",()=>{renderMap();showSection("home");});
-$("continueBtn").addEventListener("click",()=>{renderMap();showSection("home");});
-$("restartBtn").addEventListener("click",()=>startStage(currentStage));
-
-renderMap();
-showSection("home");
+drawMap();
 </script>
 </body>
 </html>
